@@ -1,0 +1,6 @@
+wget -N --retr-symlinks ftp://ftp.imagemagick.org/pub/ImageMagick/ImageMagick.tar.gz
+tar -xzvf ImageMagick.tar.gz
+cd ImageMagick-*
+./configure --prefix=$HOME/local/imagemagick
+make
+make install

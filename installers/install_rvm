@@ -1,2 +1,10 @@
 #!/bin/bash
 bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+
+if [[ -s ~/.rvm/scripts/rvm ]] ; then 
+	source ~/.rvm/scripts/rvm ; 
+    rvm install 1.9.2
+    rvm use 1.9.2 --default
+    gem install bundler
+    gem install hirb 
+fi

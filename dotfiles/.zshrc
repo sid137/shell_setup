@@ -65,7 +65,7 @@ export DW=ami-3e836657
 export FOG_RC=~/secret-credentials/.fog
 
 
-export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$HOME/local/imagemagick/lib:$LD_LIBRARY_PATH
 
 # Rails Vars
 export AUTOFEATURE=true

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<jnlp 
+	spec="1.0+" 
+	codebase="http://www.jgoodies.com/download/jdiskreport/" 
+	href="jdiskreport.jnlp">
+  <information>
+    <title>JDiskReport</title>
+    <vendor>JGoodies</vendor>
+    <homepage href="http://www.jgoodies.com/" />
+
+    <description>JDiskReport - A Graphical Disk Report Utility</description>
+    <description kind="short">JDiskReport enables you to understand how much space the directories and files consume on your hard disks.</description>
+    <description kind="tooltip">JDiskReport</description>
+
+    <icon href="jdiskreport32x32.gif"        width="32" height="32" />
+    <icon href="jdiskreport64x64.gif"        width="64" height="64" />
+    <icon href="jdiskreport-splash.jpg" kind="splash" 	        />
+    <offline-allowed />
+  </information>
+  <security>
+  <all-permissions />
+  </security>
+  <resources>
+    <j2se version="1.5+" initial-heap-size="12m" max-heap-size="384m" />
+    <jar href="jdiskreport.jar" />
+  </resources>
+  <application-desc main-class="com.jgoodies.jdiskreport.JDiskReport" />
+</jnlp>
+

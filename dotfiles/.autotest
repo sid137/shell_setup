@@ -1,0 +1,154 @@
+
+module Autotest::RspecMod
+  Autotest.add_hook :initialize do |autotest|
+    # Map to all "*_spec.rb" files inside spec and its sub directory.
+    regexp = %r%^lib/(.*)\.rb$%
+
+    autotest.remove_mapping(regexp)
+    autotest.add_mapping(regexp) do |filename, m|
+      autotest.files_matching(%r%^spec/.*#{m[1]}_spec.rb$%)
+    end
+  end
+end
+
+
+module Cucumber
+  module Formatter
+     module Console
+        def notify msg
+          #system "kdialog --title \"Failure\" --passivepopup \"#{msg}\" 5"
+        end        
+
+
+        def print_exception(e, status, indent)
+           @io.puts(format_string("#{e.message} (#{e.class})\n#{e.backtrace.join("\n")}".indent(indent), status))
+           notify e.message
+        end
+     end
+  end
+end
+
+
+def notify icon, title, msg, display_time
+  img = "<img src=#{icon}>"
+  #system "kdialog --title \"#{title}\" --passivepopup \"<table><tr><td>#{img}</td><td> #{msg}</td></tr></table>\" display_time"
+  system "notify-send -t 5000 -i \"#{icon}\" \"#{title}\" \"#{msg}\" "
+  false
+end
+
+# http://blog.davidchelimsky.net/category/autotest/
+Autotest.add_hook :initialize do |at|
+  unless ARGV.empty?
+    at.find_directories = ARGV.length == 1 ? ["spec/#{ARGV.first}","app/#{ARGV.first}"] : ARGV.dup
+  end
+end
+
+Autotest.add_hook :ran_command do  |at|
+  success_icon = '/home/sid137/core/pass.png' 
+  failure_icon = '/home/sid137/core/fail.png'
+
+  results = at.results.last
+ 
+  unless results.nil?
+    output = results[/(\d+)\s+examples?,\s*(\d+)\s+failures?(,\s*(\d+)\s+pending)?/]
+    if output
+      examples = $~[1].to_i
+      failures = $~[2].to_i
+      pending = $~[4].to_i
+    end
+ 
+    if failures > 0
+#      msg = at.files_to_test.map { |k, v| "#{k}:\n #{v.join("\n ")}"}.join("\n")
+      #msg = "<font size='72'>#{failures} Failures</font>"
+      msg = "#{failures} Failures"
+      notify failure_icon, "#{failures} TESTS FAILED", msg, 5
+    else
+      msg = "#{examples} examples"
+      notify success_icon, "TESTS PASSED", msg, 3
+    end
+  end
+end
+
+
+
+
+# done to avoid having to create a stupid freakin options file each time
+class Autotest::Rspec2 < Autotest
+  def add_options_if_present 
+    options = "--color"
+    File.exist?("spec/spec.opts") ? "-o spec/spec.opts " : options
+  end
+end
+
+
+
+
+Autotest.add_hook :initialize do |at|
+
+  # Ignore files in tmp/
+  %w{.hg .git .svn stories tmp tags Rakefile Capfile README spec/spec.opts
+  %spec/rcov.opts vendor/cache autotest .swp .swo .swn .log .tmp}.each do |exception|
+    at.add_exception(exception)
+  end
+
+
+  def all_specs
+    %r%^spec/(models|controllers|routing|views|helpers|lib)/.*_spec\.rb$%
+  end
+
+# Standard rails project mappings
+
+  # Ignore these subdirectories
+  %w{public script test tmp vendor}.each do |exception|  
+    at.add_exception(exception)
+  end
+
+  # Rerun all model specs when a model changes (for associated objects)
+  at.add_mapping(%r%^app/models/(.*)\.rb$%) { |_, m|
+    at.files_matching %r%^spec/models/.*_spec.rb$%
+  }
+
+  # Rerun a spec when it changes
+  at.add_mapping(%r%^spec/(models|controllers|routing|views|helpers|lib|requests)/.*rb$%) { |filename, _|
+    filename
+  }
+
+  # Rerun a view spec when its view changes
+  at.add_mapping(%r%^app/views/(.*)$%) { |_, m|
+    at.files_matching %r%^spec/views/#{m[1]}_spec.rb$%
+  }
+
+ # Rerun a controller spec when it changes, or all controller specs when the application controller changes
+  at.add_mapping(%r%^app/controllers/(.*)\.rb$%) { |_, m|
+    if m[1] == "application_controller"
+      at.files_matching %r%^spec/controllers/.*_spec\.rb$%
+    else
+      ["spec/controllers/#{m[1]}_spec.rb"]
+    end
+  }
+ 
+  at.add_mapping(%r%^app/helpers/(.*)_helper\.rb$%) { |_, m|
+    if m[1] == "application" then
+      at.files_matching(%r%^spec/(controllers|views|helpers)/.*_spec\.rb$%)
+    else
+      ["spec/helpers/#{m[1]}_helper_spec.rb"] + at.files_matching(%r%^spec\/views\/#{m[1]}/.*_spec\.rb$%)
+    end
+  }
+
+  # Rerun all specs when a Gem dependency, library module, or config setting changes
+  at.add_mapping(%r%^(Gemfile|config|.bundle|db).*$%) {
+    at.files_matching all_specs
+  }
+
+  # Supposed to run all specs when a lib file changes.. currently not working...
+  at.add_mapping(%r%^lib(.*)\.rb$%) {
+    at.files_matching all_specs
+  }
+
+  at.add_mapping(%r%^(spec/(spec_helper|shared/.*))\.rb$%) {
+    at.files_matching all_specs
+  }
+
+end
+
+

@@ -1,0 +1,6 @@
+installer_dir=$(dirname $(readlink -f ${0}))
+for file in `ls -A $installer_dir/install_*` 
+do
+    bash -x $file
+done
+            

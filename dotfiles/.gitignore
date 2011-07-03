@@ -1,0 +1,9 @@
+*.swp
+*.swo
+.sass-cache
+*~
+*.cache
+*.log
+*.pid
+tmp/**/*
+db/*.sqlite3

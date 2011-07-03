@@ -1,0 +1,19 @@
+#!/bin/bash +x
+
+
+sudo apt-get update
+sudo apt-get install aptitude
+
+./install_software
+
+cp -r bin ~/
+cp -r dotfiles/* ~/
+
+touch ~/.secret_credentials
+
+
+#gem install hirb 
+
+# http://help.github.com/set-your-user-name-email-and-github-token/
+#git config --global user.name "Firstname Lastname"
+#git config --global user.email "your_email@youremail.com"

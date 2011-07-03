@@ -1,0 +1,28 @@
+This is a code sample showing how to use the Amazon E-Mail Service from the 
+command line.  To learn more about this code sample, see the AWS E-Mail 
+Service Developer Guide. 
+
+Before running this code sample, you must fulfill the following prerequisites:
+
+* You must have an Amazon Web Services account, and must also sign up for the
+  Amazon E-Mail Service.  See the AWS E-Mail Service Getting Started Guide 
+  for more information.
+
+* You must install Perl version 5.6.0 or later.  If you already have Perl 
+  installed, you can determine your version number by typing
+
+      perl -v
+
+  at the command prompt.  If you do not have Perl installed, go to 
+  http://www.perl.org for more information.
+
+* Depending on the version of Perl that you are using, you may need to install
+  some additional Perl modules.  To install these modules, run the following
+  commands:
+
+      perl -MCPAN -e 'install Digest::SHA'
+      perl -MCPAN -e 'install URI::Escape'
+      perl -MCPAN -e 'install Bundle::LWP'
+      perl -MCPAN -e 'install MIME::Base64'
+      perl -MCPAN -e 'install Crypt::SSLeay'
+      perl -MCPAN -e 'install XML::LibXML'

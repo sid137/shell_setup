@@ -1,10 +1,22 @@
 #!/bin/bash
-bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
 
-if [[ -s ~/.rvm/scripts/rvm ]] ; then 
-	source ~/.rvm/scripts/rvm ; 
-    rvm install 1.9.2
-    rvm use 1.9.2 --default
-    gem install bundler
-    gem install hirb 
+# Check to see if rvm is installed.  If it isn't, then install it
+hash rvm &> /dev/null
+if [ $? -eq 1 ]; then
+    bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+fi
+
+# If ruby isn't installed, but rvm is, then install ruby 1.9.2 and set it as the
+# default ruby.  Also install a few useful gems
+hash ruby &> /dev/null
+if [ $? -eq 1 ]; then
+    if [[ -s ~/.rvm/scripts/rvm ]] ; then 
+        source ~/.rvm/scripts/rvm ; 
+        rvm install 1.9.2
+        rvm use 1.9.2 --default
+        gem install bundler
+        gem install github
+        gem install heroku
+        gem install hirb 
+    fi
 fi

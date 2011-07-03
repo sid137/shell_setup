@@ -1,11 +1,11 @@
 #!/bin/bash +x
 
-#cp -r bin ~/
-#cp dotfiles/.* ~/
+cp -r bin ~/
+cp -b dotfiles/.* ~/
 mkdir -p ~/local
 
 sudo apt-get update
-sudo apt-get install aptitude
+sudo apt-get install aptitude zsh
 
 echo `whoami` | xargs sudo usermod --shell /bin/zsh
 

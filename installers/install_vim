@@ -1,9 +1,12 @@
 #!/bin/bash
 
-rm -rf /tmp/vim
-hg clone https://vim.googlecode.com/hg/ /tmp/vim
+if [ ! -d "/tmp/vim" ]; then
+    hg clone https://vim.googlecode.com/hg/ /tmp/vim
+fi
+
 cd /tmp/vim
 
-./configure --enable-rubyinterp --enable-pythoninterp --enable-perlinterp --enable-cscope --enable-multibyte  --with-features=huge --enable-fontset --enable-xim --with-x --prefix=$HOME/local/vim #--enable-python3interp 
+make clean;
+./configure --enable-rubyinterp --enable-perlinterp --enable-cscope --enable-multibyte  --with-features=huge --enable-fontset --enable-xim --with-x --prefix=$HOME/local/vim # --enable-pythoninterp --enable-python3interp 
 make; make install
 

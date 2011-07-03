@@ -1,16 +1,18 @@
 #!/bin/bash +x
 
-cp -r bin ~/
-cp -r dotfiles/* ~/
+#cp -r bin ~/
+#cp dotfiles/.* ~/
 mkdir -p ~/local
 
 sudo apt-get update
 sudo apt-get install aptitude
 
+echo `whoami` | xargs sudo usermod --shell /bin/zsh
+
 ./installers/install_packages
+./installers/install_java
 ./installers/install_imagemagick
 
-echo `whoami` | xargs sudo usermod --shell /bin/zsh
 #gem install hirb 
 
 # http://help.github.com/set-your-user-name-email-and-github-token/

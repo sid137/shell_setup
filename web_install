@@ -1,0 +1,7 @@
+#!/bin/bash
+
+curl -s -L https://github.com/sid137/shell_setup/tarball/master -o /tmp/shell-setup.tar.gz
+mkdir /tmp/shell-setup
+tar -zxvf /tmp/shell-setup.tar.gz -C /tmp/shell-setup
+cd /tmp/shell-setup
+./install

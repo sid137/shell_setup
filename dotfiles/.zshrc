@@ -4,14 +4,14 @@ export OMP_NUM_THREADS=4
 export RUBYOPT=rubygems
 export RUBYLIB=~/lib
 export RSPEC=true
-
 export RDOCOPT="-S -f html"
+
 export PATH=$HOME/bin:$PATH
 # add recursive PATH, taken from 
 # http://stackoverflow.com/questions/657108/bash-recursively-adding-subdirectories-to-the-path
 export PATH=$PATH:$(find -L ~/bin -type d | sed '/\/\./ d' | tr '\n' ':' | sed 's/:$//')
 
-export PATH=$HOME/vim/bin:$PATH
+export PATH=$HOME/local/vim/bin:$PATH
 export PATH=$HOME/local/node/bin:$PATH
 export PATH=$HOME/local/mongo/bin:$PATH
 export PATH=$HOME/local/couchdb/bin:$PATH
@@ -24,6 +24,7 @@ export PATH=$PATH:./bin:${PATH//:\.\/bin:}
 export PERL5LIB=$PERL5LIB:$PATH
 
 # Lines configured by zsh-newuser-install
+export EDITOR="vim"
 export HISTFILE=~/.histfile
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -51,47 +52,40 @@ compinit
 #ZLS_COLORS=$LS_COLORS
 # End of lines added by compinstalli
 export TERM=xterm-color
-#PS1=$'%{\e[0;31m%}%{\e[0m%}%{\e[0m%}%{\e[1;34m%}$(prompt_git_info):%{\e[0m%}%{\e[1;32m%}%~%{\e[0m%} $ '
 PS1=$'$(prompt_git_info)%{$terminfo[bold]$fg[blue]%}:%{\e[0m%}%{$terminfo[bold]$fg[green]%}%~%{\e[0m%} $ '
 
 export AWS_CREDENTIALS_FILE=~/aws_credentials
 export AWS_CREDENTIAL_FILE=~/aws_credentials
-export EDITOR="vim"
-export VPS=255.255.255.255
-export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.16
-export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-export EC2_HOME=
-export DW=ami-3e836657
 export FOG_RC=~/secret-credentials/.fog
 
-
+export JAVA_HOME=/usr/lib/jvm/java-6-sun-1.6.0.16
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$HOME/local/imagemagick/lib:$LD_LIBRARY_PATH
 
 # Rails Vars
 export AUTOFEATURE=true
-
 # Configure firefox so save_and_open_path command in capybara works in launchy
 export LAUNCHY_BROWSER=/usr/bin/google-chrome
 
 # Text color variables
-txtund=$(tput sgr 0 1)     # Underline
-txtbld=$(tput bold)        # Bold
-txtred=$(tput setaf 1)     # Red
-txtgrn=$(tput setaf 2)     # Green
-txtylw=$(tput setaf 3)     # Yellow
-txtblu=$(tput setaf 4)     # Blue
-txtpur=$(tput setaf 5)     # Purple
-txtcyn=$(tput setaf 6)     # Cyan
-txtwht=$(tput setaf 7)     # White
-txtrst=$(tput sgr0)        # Text reset
-txtund=$(tput sgr 0 1)           # Underline
-txtbld=$(tput bold)              # Bold
-bldred=${txtbld}$(tput setaf 1)  #  red
-bldblu=${txtbld}$(tput setaf 4)  #  blue
-bldwht=${txtbld}$(tput setaf 7)  #  white
-bldgrn=${txtbld}${txtgrn}
-alert=${bldgrn}
-txtrst=$(tput sgr0)              # Reset
+export txtund=$(tput sgr 0 1)     # Underline
+export txtbld=$(tput bold)        # Bold
+export txtred=$(tput setaf 1)     # Red
+export txtgrn=$(tput setaf 2)     # Green
+export txtylw=$(tput setaf 3)     # Yellow
+export txtblu=$(tput setaf 4)     # Blue
+export txtpur=$(tput setaf 5)     # Purple
+export txtcyn=$(tput setaf 6)     # Cyan
+export txtwht=$(tput setaf 7)     # White
+export txtrst=$(tput sgr0)        # Text reset
+export txtund=$(tput sgr 0 1)           # Underline
+export txtbld=$(tput bold)              # Bold
+export bldred=${txtbld}$(tput setaf 1)  #  red
+export bldblu=${txtbld}$(tput setaf 4)  #  blue
+export bldwht=${txtbld}$(tput setaf 7)  #  white
+export bldgrn=${txtbld}${txtgrn}
+export alert=${bldgrn}
+export txtrst=$(tput sgr0)              # Reset
 info=${bldwht}*${txtrst}         # Feedback
 pass=${bldblu}*${txtrst}
 warn=${bldred}!${txtrst}

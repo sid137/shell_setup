@@ -1,4 +1,5 @@
 #!/bin/bash
 
+echo "${bldgrn}Installing ${txtwht}java...${txtrst}"
 sudo aptitude install g++ openjdk-6-jre-headless openjdk-6-jdk
 

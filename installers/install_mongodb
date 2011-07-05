@@ -1,0 +1,14 @@
+#!/bin/bash
+
+command -v mongod > /dev/null
+if [ $? -eq 1 ]; then
+    echo "${bldgrn}Installing the MongoDB database into ${txtwht}$HOME/local/mongo${txtrst}"
+    wget -N http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-1.8.2.tgz
+    tar -xzvf mongodb*.tgz
+    rm mongo*.tgz
+    mv mongodb* ~/local/mongo
+
+    sudo mkdir -p /data/db/
+    sudo chown `id -u` /data/db
+fi
+

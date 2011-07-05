@@ -1,4 +1,5 @@
 #!/bin/bash
 
+echo "${bldgrn}Installing standard system packages...${txtrst}"
 path=$(dirname $(readlink -f ${0}))
 cat $path/packages | xargs sudo aptitude install -y 

@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+echo "${bldgrn}Configuring your git installation...${txtrst}"
+
+git config --global --get user.name > /dev/null
+if [ $? -eq 1 ]; then
+    echo -n 'Enter your full name e.g John Doe: '
+    read  name
+    git config --global user.name $name
+fi
+
+git config --global --get user.email > /dev/null
+if [ $? -eq 1 ]; then
+    echo -n 'Enter your email address: '
+    read  email
+    git config --global user.email $email
+fi
+
+
+git config --global --get github.user > /dev/null
+if [ $? -eq 1 ]; then
+    echo -n 'Enter your Github username: '
+    read  user
+    git config --global github.user $user
+fi
+
+
+git config --global --get github.token > /dev/null
+if [ $? -eq 1 ]; then
+    echo "Log in to github and find your API token here https://github.com/account/admin"
+    echo -n 'Enter your github token: '
+    read  token
+    git config --global github.token $token
+fi
+

@@ -5,3 +5,5 @@ mkdir /tmp/shell-setup
 tar -zxvf /tmp/shell-setup.tar.gz -C /tmp/shell-setup --strip 1
 cd /tmp/shell-setup
 ./install
+cd ..
+rm -rf /tmp/shell-setup

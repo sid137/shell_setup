@@ -4,4 +4,4 @@ clear
 echo "${bldgrn}I have changed your default shell to ${txtwht}/bin/zsh${txtrst}"
 echo "${bldgrn}If you don't like it, change back to bash by running ${txtwht} echo \`whoami\` | xargs sudo usermod --shell /bin/bash${txtrst}"
 
-echo "${bldred}Please log off now and log back in${txtrst}"
+echo "${bldred}${blink}Please log off now and log back in${txtrst}"

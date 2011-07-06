@@ -80,6 +80,7 @@ export txtwht=$(tput setaf 7)     # White
 export txtrst=$(tput sgr0)        # Text reset
 export txtund=$(tput sgr 0 1)           # Underline
 export txtbld=$(tput bold)              # Bold
+export blink=$(tput blink)            # Blink
 export bldred=${txtbld}$(tput setaf 1)  #  red
 export bldblu=${txtbld}$(tput setaf 4)  #  blue
 export bldwht=${txtbld}$(tput setaf 7)  #  white

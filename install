@@ -5,6 +5,8 @@ cp -r bin ~/
 echo "${bldgrn}Installing shell config files${txtrst}"
 cp -b dotfiles/.* ~/
 
+./installers/install_vim
+./installers/install_imagemagick
 sudo apt-get update
 sudo apt-get install aptitude zsh
 

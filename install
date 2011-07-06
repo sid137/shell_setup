@@ -5,13 +5,9 @@ cp -r bin ~/
 echo "${bldgrn}Installing shell config files${txtrst}"
 cp -b dotfiles/.* ~/
 
-./installers/install_vim
-./installers/install_imagemagick
 sudo apt-get update
 sudo apt-get install aptitude zsh
 
-echo "${bldgrn}Changing your defaul shell to ${txtwht}/bin/zsh${txtrst}"
-echo "${bldgrn}If you don't like it, change back to bash by running ${txtwht} echo `whoami` | xargs sudo usermod --shell /bin/zsh${txtrst}"
 echo `whoami` | xargs sudo usermod --shell /bin/zsh
 
 ./installers/install_packages
@@ -27,3 +23,5 @@ mkdir -p ~/local
 ./installers/install_imagemagick
 
 ./installers/configure_setup
+gnome-terminal 
+exit

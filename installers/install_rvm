@@ -9,7 +9,7 @@ fi
 
 # If ruby isn't installed, but rvm is, then install ruby 1.9.2 and set it as the
 # default ruby.  Also install a few useful gems
-hash ruby &> /dev/null
+ruby -v | grep 1.9.2 &> /dev/null
 if [ $? -eq 1 ]; then
     if [[ -s ~/.rvm/scripts/rvm ]] ; then 
         echo "${bldgrn}Installing ruby 1.9.2...${txtrst}"

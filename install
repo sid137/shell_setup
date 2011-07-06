@@ -4,6 +4,7 @@ echo "${bldgrn}Copying programs into ${txtwht}$HOME/bin${txtrst}"
 cp -r bin ~/
 echo "${bldgrn}Installing shell config files${txtrst}"
 cp -b dotfiles/.* ~/
+. ~/.zshrc
 
 sudo apt-get update
 sudo apt-get install aptitude zsh

@@ -23,5 +23,4 @@ mkdir -p ~/local
 ./installers/install_imagemagick
 
 ./installers/configure_setup
-gnome-terminal 
-exit
+./display_welcome

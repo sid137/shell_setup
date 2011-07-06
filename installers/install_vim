@@ -3,7 +3,7 @@
 vim --version | grep 7.3 > /dev/null
 if [ $? -ne 0 ]; then
     echo "${bldgrn}Installing the latest VIM editor into ${txtwht}$HOME/local/vim${txtrst}"
-    if [ ! -d "/tmp/vim" ]; then
+    if [ ! -d "~/vim" ]; then
         hg clone https://vim.googlecode.com/hg/ ~/vim
     fi
 

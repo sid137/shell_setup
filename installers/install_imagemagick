@@ -1,7 +1,7 @@
 #!/bin/bash
 
 command -v identify > /dev/null
-if [ $? -eq 1 ]; then
+if [ $? -ne 0 ]; then
     echo "${bldgrn}Installing imagemagick into ${txtwht}$HOME/local/imagemagick${txtrst}"
     wget -N --retr-symlinks ftp://ftp.imagemagick.org/pub/ImageMagick/ImageMagick.tar.gz
     tar -xzvf ImageMagick.tar.gz
